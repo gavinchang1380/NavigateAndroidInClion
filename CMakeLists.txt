@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.10)
+project(android_clion)
+
+set(CMAKE_CXX_STANDARD 11)
+
+include_directories(system/media/audio/include)
+include_directories(external/libcxx/include)
+include_directories(external/libpcap)
+
+include_directories(bionic/libc)
+include_directories(bionic/libc/kernel/uapi)
+include_directories(bionic/libc/include)
+include_directories(bionic/libc/arch-arm/include)
+include_directories(bionic/libstdc++/include)
+include_directories(bionic/libc/upstream-netbsd/libc/include)
+include_directories(bionic/libthread_db/include)
+include_directories(bionic/libm/include)
+
+include_directories(frameworks/native/include)
+include_directories(frameworks/base/include/)
+include_directories(frameworks/av/include/)
+include_directories(system/core/include)
+include_directories(hardware/libhardware/include)
+include_directories(hardware/rockchip/camera/SiliconImage/include)
+include_directories(hardware/rockchip/camera/SiliconImage/include/isp_cam_api)
+include_directories(hardware/rockchip/camera/SiliconImage/isi/include)
+
+file(GLOB_RECURSE BIONIC_SOURCES "bionic/*.cpp" "bionic/*.c" "bionic/*.cxx" "bionic/*.h")
+file(GLOB_RECURSE HARDWARE_SOURCES "hardware/*.cpp" "hardware/*.c" "hardware/*.cxx" "hardware/*.h")
+file(GLOB_RECURSE FRAMEWORK_SOURCES "frameworks/*.cpp" "frameworks/*.c" "frameworks/*.cxx" "frameworks/*.h")
+file(GLOB_RECURSE SYSTEM_SOURCES "system/*.cpp" "system/*.c" "system/*.cxx" "system/*.h")
+file(GLOB_RECURSE LIBCORE_SOURCES "libcore/*.cpp" "libcore/*.c" "libcore/*.cxx" "libcore/*.cc" "libcore/*.h")
+file(GLOB_RECURSE DEVICE_SOURCES "device/*.cpp" "device/*.c" "device/*.cxx" "device/*.cc" "device/*.h")
+file(GLOB_RECURSE MYCODE_SOURCES "mycode/*.cpp" "mycode/*.c" "mycode/*.cxx" "mycode/*.cc" "mycode/*.h")
+
+add_executable(android_c ${BIONIC_SOURCES} ${LIBCORE_SOURCES} ${HARDWARE_SOURCES} ${FRAMEWORK_SOURCES} ${SYSTEM_SOURCES} ${DEVICE_SOURCES} ${MYCODE_SOURCES})
